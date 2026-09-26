@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FitLog — Workout Library
+
+A dark, no-nonsense gym companion. Browse a library of twelve lifts, open any one for full
+coaching detail, lock the ones you want into today's plan, and watch the exercises, minutes
+and calories add up as you train.
+
+**Live API:** `https://api.api-store.workers.dev/api/fitlog`
+
+---
+
+## Technologies Used
+
+| Technology | Purpose |
+| --- | --- |
+| Next.js 16 (App Router) | Routing, server rendering and data fetching |
+| React 19 | UI components and state |
+| TypeScript | Type safety across the API layer and components |
+| Tailwind CSS v4 | Styling, design tokens and responsive layout |
+| lucide-react | Icon set for stats, tags and action buttons |
+| react-hot-toast | Toast notifications for every plan action |
+
+---
+
+## Key Features
+
+1. **Full workout library** — all twelve exercises are fetched from the live API and shown in a
+   responsive 3×4 grid with images, muscle-group tags, equipment and a duration / calories /
+   rating stat row. Every card opens a detail page.
+
+2. **Detailed workout pages** — a two-column layout with a large illustration, description,
+   category tags, a seven-row key-specs panel (equipment, difficulty, sets, reps, duration,
+   calories, rating) and numbered step-by-step instructions.
+
+3. **Today's plan with a five-lift cap** — add a workout to today's plan or save it for later,
+   each with its own toast. The navbar's Plan and Saved counters update instantly, and the add
+   button disables itself once the plan is full at five lifts.
+
+4. **A live training log** — the My Plan page totals exercises, minutes and calories as items
+   come and go, splits them across Today's Plan and Saved tabs, and lets you mark a lift as done,
+   remove it, or sort the list by duration, calories or rating.
+
+5. **Persistent, searchable and responsive** — the plan survives a page reload through
+   `localStorage`, both the library and My Plan can be searched by workout name or muscle-group
+   tag, and every screen is built for mobile, tablet and desktop. Loading states, a custom 404
+   page and an error boundary keep the app steady on any route.
+
+---
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To build for production:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+├── app/
+│   ├── layout.tsx              # Fonts, navbar, footer, toaster, plan provider
+│   ├── page.tsx                # Home — hero + library
+│   ├── loading.tsx             # Home loading animation
+│   ├── not-found.tsx           # 404 page
+│   ├── error.tsx               # Route error boundary
+│   ├── workouts/[id]/page.tsx  # Workout detail page
+│   └── my-plan/page.tsx        # Today's plan and saved lifts
+├── components/
+│   ├── layout/                 # Navbar, footer
+│   ├── home/                   # Hero, library grid, workout card
+│   ├── workout/                # Detail page actions
+│   ├── plan/                   # Metrics, tabs, sort, rows, empty state
+│   └── ui/                     # Brand, tag pill, stat row, spinner
+├── context/plan-context.tsx    # Plan/saved/done state + localStorage
+└── lib/                        # API client and shared types
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deployed on [Vercel](https://vercel.com). Every route is reload-safe, so refreshing the home page,
+any workout detail page or the My Plan page works exactly as expected in production.
