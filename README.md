@@ -55,7 +55,7 @@ npm install
 npm run dev
 ```
 
-Open [https://tarikul-fit-log.vercel.app/](https://tarikul-fit-log.vercel.app/) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
 To build for production:
 
