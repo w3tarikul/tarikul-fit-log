@@ -12,7 +12,7 @@ const tabs: Array<{ id: PlanTab; label: string }> = [
 
 export function PlanTabs({ active, onChange }: PlanTabsProps) {
   return (
-    <div role="tablist" className="inline-flex rounded-xl border border-line bg-surface p-1">
+    <div role="tablist" className="inline-flex self-start rounded-xl border border-line bg-surface p-1">
       {tabs.map((tab) => (
         <button
           key={tab.id}
