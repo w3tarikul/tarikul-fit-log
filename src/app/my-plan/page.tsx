@@ -12,10 +12,11 @@ import { usePlan } from "@/context/plan-context";
 import { getWorkouts } from "@/lib/api";
 import type { Workout } from "@/lib/types";
 
-const sortValue: Record<SortKey, (workout: Workout) => number> = {
-  duration: (workout) => workout.duration,
-  calories: (workout) => workout.caloriesBurned,
-  rating: (workout) => workout.rating,
+// Shortest and lightest lifts surface first, while the highest rated lead their list.
+const comparators: Record<SortKey, (a: Workout, b: Workout) => number> = {
+  duration: (a, b) => a.duration - b.duration,
+  calories: (a, b) => a.caloriesBurned - b.caloriesBurned,
+  rating: (a, b) => b.rating - a.rating,
 };
 
 export default function MyPlanPage() {
@@ -76,7 +77,7 @@ export default function MyPlanPage() {
         workout.name.toLowerCase().includes(term) ||
         workout.muscleGroups.some((group) => group.toLowerCase().includes(term)),
     )
-    .sort((a, b) => sortValue[sort](b) - sortValue[sort](a));
+    .sort(comparators[sort]);
 
   const ready = hydrated && !loading;
 
