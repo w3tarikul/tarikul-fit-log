@@ -4,6 +4,8 @@ A dark, no-nonsense gym companion. Browse a library of twelve lifts, open any on
 coaching detail, lock the ones you want into today's plan, and watch the exercises, minutes
 and calories add up as you train.
 
+**Live Site:** [https://tarikul-fit-log.vercel.app/](https://tarikul-fit-log.vercel.app/)
+
 **Live API:** `https://api.api-store.workers.dev/api/fitlog`
 
 ---
@@ -53,7 +55,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [https://tarikul-fit-log.vercel.app/](https://tarikul-fit-log.vercel.app/) with your browser to see the result.
 
 To build for production:
 
@@ -90,5 +92,6 @@ src/
 
 ## Deployment
 
-Deployed on [Vercel](https://vercel.com). Every route is reload-safe, so refreshing the home page,
-any workout detail page or the My Plan page works exactly as expected in production.
+Deployed on Vercel at [https://tarikul-fit-log.vercel.app/](https://tarikul-fit-log.vercel.app/).
+Every route is reload-safe, so refreshing the home page, any workout detail page or the My Plan
+page works exactly as expected in production.
